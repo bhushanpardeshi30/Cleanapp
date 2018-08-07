@@ -1,14 +1,17 @@
 
 package com.wipro.feedapp.model;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Row {
-
+    @NonNull
     @SerializedName("title")
     @Expose
     private String title;
+    @NonNull
     @SerializedName("description")
     @Expose
     private String description;
@@ -21,6 +24,7 @@ public class Row {
     }
 
     public void setTitle(String title) {
+        if(title!=null)
         this.title = title;
     }
 
@@ -29,7 +33,8 @@ public class Row {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        if(description!=null)
+            this.description = description;
     }
 
     public Object getImageHref() {

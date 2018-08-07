@@ -5,9 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.squareup.picasso.Picasso;
 import com.wipro.feedapp.R;
 import com.wipro.feedapp.main_activity.RecyclerItemClickListener;
 import com.wipro.feedapp.model.FeedsList;
@@ -35,9 +37,15 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.FeedsViewHol
 
     @Override
     public void onBindViewHolder(FeedsViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        holder.txtNoticeTitle.setText(dataList.getRows().get(position).getTitle());
-        holder.txtNoticeBrief.setText(dataList.getRows().get(position).getDescription());
-        //holder.txtNoticeFilePath.setText(dataList.get(position).getImageHref());
+        if(dataList.getRows().get(position).getTitle()!=null)
+        holder.txt_feeds_title.setText(dataList.getRows().get(position).getTitle().trim());
+        if(dataList.getRows().get(position).getDescription()!=null)
+            holder.txt_feeds_brief.setText(dataList.getRows().get(position).getDescription().trim());
+        if(dataList.getRows().get(position).getImageHref()!=null){
+            Picasso.get().load(dataList.getRows().get(position).getImageHref().toString()).into(holder.imgView);
+
+        }
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,13 +62,14 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.FeedsViewHol
 
     class FeedsViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtNoticeTitle, txtNoticeBrief, txtNoticeFilePath;
+        TextView txt_feeds_brief, txt_feeds_title;
+        ImageView imgView;
 
         FeedsViewHolder(View itemView) {
             super(itemView);
-            txtNoticeTitle =  itemView.findViewById(R.id.txt_notice_title);
-            txtNoticeBrief =  itemView.findViewById(R.id.txt_notice_brief);
-            //txtNoticeFilePath =  itemView.findViewById(R.id.txt_notice_file_path);
+            txt_feeds_title =  itemView.findViewById(R.id.txt_feeds_title);
+            txt_feeds_brief =  itemView.findViewById(R.id.txt_feeds_brief);
+            imgView =  itemView.findViewById(R.id.img_feed);
 
         }
     }
