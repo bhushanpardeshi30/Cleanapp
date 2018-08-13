@@ -1,55 +1,33 @@
 package com.wipro.feedapp;
 
 import android.content.pm.ActivityInfo;
-import android.support.test.filters.MediumTest;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 
+import com.wipro.feedapp.base.AbstractTest;
 import com.wipro.feedapp.main_activity.MainActivity;
+import com.wipro.feedapp.main_activity.MainContract;
+import com.wipro.feedapp.main_activity.MainPresenterImpl;
 
 import org.junit.Rule;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import android.support.test.rule.ActivityTestRule;
 
-import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.assertTrue;
-
-@MediumTest
 @RunWith(AndroidJUnit4.class)
-public class MainActivityTest {
+public class MainActivityTest extends AbstractTest{
+
 
     @Rule
-    public ActivityTestRule<MainActivity> rule  = new  ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
 
-
-    public void testOnCreate() throws Exception {
-        MainActivity activity = rule.getActivity();
-
-
-        //Check all the activity components
-        assertNotNull(activity);
-
-        //Check if the rights components are available on the screen
-        assertNotNull(LayoutInflater.from(activity));
-        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        //testOrientationPortrait();
-        Thread.sleep(50);
-        assertTrue(true);
-
+    @Test
+    public void testFeedList(){
     }
 
-    public void testOrientationChange() throws Exception {
-        MainActivity activity = rule.getActivity();
 
-        assertNotNull(activity);
-        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        //Check if the rights components are available on the screen
-        assertNotNull(LayoutInflater.from(activity));
-        Thread.sleep(50);
-        assertTrue(true);
 
-        //testOrientationLandscape();
-    }
 }
