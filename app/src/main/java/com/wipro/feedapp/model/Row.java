@@ -1,26 +1,26 @@
 
 package com.wipro.feedapp.model;
 
-import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Row {
-    @NonNull
+
     @SerializedName("title")
-    @Expose
-    private String title;
-    @NonNull
+    @Expose private String title;
+
     @SerializedName("description")
     @Expose
     private String description;
+
     @SerializedName("imageHref")
     @Expose
     private Object imageHref;
 
     public String getTitle() {
-        return title;
+
+            return title;
     }
 
     public void setTitle(String title) {

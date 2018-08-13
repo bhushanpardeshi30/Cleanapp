@@ -3,6 +3,7 @@ package com.wipro.feedapp.main_activity;
 
 import com.wipro.feedapp.model.FeedsList;
 import com.wipro.feedapp.model.Row;
+import com.wipro.feedapp.my_interface.BasePresenter;
 
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ public interface MainContract {
     /**
      * Call when user interact with the view and other when view OnDestroy()
      * */
-    interface presenter{
+    interface presenter extends BasePresenter<MainView>{
 
         void onDestroy();
 

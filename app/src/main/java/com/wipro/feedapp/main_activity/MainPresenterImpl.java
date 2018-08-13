@@ -2,9 +2,7 @@ package com.wipro.feedapp.main_activity;
 
 
 import com.wipro.feedapp.model.FeedsList;
-import com.wipro.feedapp.model.Row;
 
-import java.util.ArrayList;
 
 /**
  * Created by Bhushan on 07/8/18.
@@ -59,5 +57,16 @@ public class MainPresenterImpl implements MainContract.presenter, MainContract.G
             mainView.onResponseFailure(t);
             mainView.hideProgress();
         }
+    }
+
+    @Override
+    public void attach(MainContract.MainView view) {
+        this.mainView=mainView;
+    }
+
+    @Override
+    public void detach() {
+        this.mainView=null;
+
     }
 }

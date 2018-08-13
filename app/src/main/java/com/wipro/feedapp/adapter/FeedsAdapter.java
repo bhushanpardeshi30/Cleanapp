@@ -37,22 +37,25 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.FeedsViewHol
 
     @Override
     public void onBindViewHolder(FeedsViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        if(dataList.getRows().get(position).getTitle()!=null)
-        holder.txt_feeds_title.setText(dataList.getRows().get(position).getTitle().trim());
-        if(dataList.getRows().get(position).getDescription()!=null)
-            holder.txt_feeds_brief.setText(dataList.getRows().get(position).getDescription().trim());
-        if(dataList.getRows().get(position).getImageHref()!=null){
-            Picasso.get().load(dataList.getRows().get(position).getImageHref().toString()).into(holder.imgView);
+        if(dataList.getRows().get(position)!=null){
+            if(dataList.getRows().get(position).getTitle()!=null)
+                holder.txt_feeds_title.setText(dataList.getRows().get(position).getTitle().trim());
+            if(dataList.getRows().get(position).getDescription()!=null)
+                holder.txt_feeds_brief.setText(dataList.getRows().get(position).getDescription().trim());
+            if(dataList.getRows().get(position).getImageHref()!=null){
+                Picasso.get().load(dataList.getRows().get(position).getImageHref().toString()).into(holder.imgView);
 
+            }
+
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    recyclerItemClickListener.onItemClick(dataList.getRows().get(position));
+                }
+            });
         }
 
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                recyclerItemClickListener.onItemClick(dataList.getRows().get(position));
-            }
-        });
     }
 
     @Override
