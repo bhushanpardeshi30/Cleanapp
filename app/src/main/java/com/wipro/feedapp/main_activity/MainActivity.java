@@ -18,6 +18,7 @@ import com.wipro.feedapp.adapter.FeedsAdapter;
 import com.wipro.feedapp.model.FeedsList;
 import com.wipro.feedapp.model.Row;
 
+import retrofit2.Retrofit;
 
 
 public class MainActivity extends AppCompatActivity implements MainContract.MainView {

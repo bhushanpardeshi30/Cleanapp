@@ -61,7 +61,7 @@ public class MainPresenterImpl implements MainContract.presenter, MainContract.G
 
     @Override
     public void attach(MainContract.MainView view) {
-        this.mainView=mainView;
+        this.mainView=view;
     }
 
     @Override
