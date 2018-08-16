@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
         public void onItemClick(Row row) {
 
             Toast.makeText(MainActivity.this,
-                    R.string.title + row.getTitle(),
+                    "Title: " + row.getTitle(),
                     Toast.LENGTH_LONG).show();
 
         }
