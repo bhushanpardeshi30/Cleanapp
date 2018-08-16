@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.e("TAG","onCreate()");
+
         initializeToolbarAndRecyclerView();
         initProgressBar();
 
