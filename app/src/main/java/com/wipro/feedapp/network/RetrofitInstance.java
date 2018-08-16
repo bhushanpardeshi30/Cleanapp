@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.wipro.feedapp.BuildConfig;
 import com.wipro.feedapp.FeedApplication;
 
 import java.io.IOException;
@@ -19,7 +20,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitInstance {
 
     private static Retrofit retrofit;
-    private static final String BASE_URL = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json/";
 
     /**
      * Create an instance of Retrofit object
@@ -33,10 +33,9 @@ public class RetrofitInstance {
                     .cache(cache)
                     .build();
 
-           //Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
             retrofit = new retrofit2.Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl(BuildConfig.SERVER_URL)
                     .client(okHttpClient)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();

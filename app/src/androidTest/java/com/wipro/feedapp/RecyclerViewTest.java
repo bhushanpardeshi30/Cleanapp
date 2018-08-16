@@ -25,10 +25,9 @@ public class RecyclerViewTest extends ActivityInstrumentationTestCase2<MainActiv
         getActivity();
     }
 
-    @Test
     public void testItemClick() {
 
-        onView(withRecyclerView(R.id.rc).atPosition(1)).perform(click());
+        onView(withRecyclerView(R.id.rcViewFeeds).atPosition(1)).perform(click());
 
         onView(withId(R.id.txt_feeds_title)).check(matches(isDisplayed()));
 

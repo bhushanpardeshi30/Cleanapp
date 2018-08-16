@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +25,7 @@ import retrofit2.Retrofit;
 public class MainActivity extends AppCompatActivity implements MainContract.MainView {
 
     private ProgressBar progressBar;
-    private RecyclerView recyclerView;
+    private RecyclerView rcViewFeeds;
 
     private MainContract.presenter presenter;
     private Toolbar toolbar;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.e("TAG","onCreate()");
         initializeToolbarAndRecyclerView();
         initProgressBar();
 
@@ -51,9 +53,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        recyclerView = findViewById(R.id.recycler_view_employee_list);
+        rcViewFeeds = findViewById(R.id.rcViewFeeds);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-        recyclerView.setLayoutManager(layoutManager);
+        rcViewFeeds.setLayoutManager(layoutManager);
 
 
     }
@@ -86,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
         public void onItemClick(Row row) {
 
             Toast.makeText(MainActivity.this,
-                    "List title:  " + row.getTitle(),
+                    R.string.title + row.getTitle(),
                     Toast.LENGTH_LONG).show();
 
         }
@@ -109,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
     public void setDataToRecyclerView(FeedsList feedsArrayList) {
 
         FeedsAdapter adapter = new FeedsAdapter(feedsArrayList , recyclerItemClickListener);
-        recyclerView.setAdapter(adapter);
+        rcViewFeeds.setAdapter(adapter);
 
         toolbar.setTitle(feedsArrayList.getTitle());
 
@@ -118,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
     @Override
     public void onResponseFailure(Throwable throwable) {
         Toast.makeText(MainActivity.this,
-                "Something went wrong...Error message: " + throwable.getMessage(),
+                R.string.error_msg + throwable.getMessage(),
                 Toast.LENGTH_LONG).show();
     }
 
