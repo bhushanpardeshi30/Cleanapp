@@ -1,12 +1,11 @@
-package com.wipro.feedapp.main_activity;
+package com.wipro.feedapp.presenter;
 
 import android.os.Build;
 import android.util.Log;
 
 
+import com.wipro.feedapp.view.MainContract;
 import com.wipro.feedapp.model.FeedsList;
-import com.wipro.feedapp.my_interface.GetFeedsDataService;
-import com.wipro.feedapp.network.RetrofitInstance;
 
 import retrofit2.Call;
 import retrofit2.Callback;

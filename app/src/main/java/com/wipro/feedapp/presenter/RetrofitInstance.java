@@ -1,4 +1,4 @@
-package com.wipro.feedapp.network;
+package com.wipro.feedapp.presenter;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

@@ -1,4 +1,4 @@
-package com.wipro.feedapp.my_interface;
+package com.wipro.feedapp.presenter;
 
 
 import com.wipro.feedapp.model.FeedsList;

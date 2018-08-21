@@ -1,4 +1,4 @@
-package com.wipro.feedapp.main_activity;
+package com.wipro.feedapp.presenter;
 
 
 import com.wipro.feedapp.model.Row;

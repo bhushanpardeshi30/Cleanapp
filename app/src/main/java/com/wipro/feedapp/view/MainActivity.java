@@ -1,31 +1,27 @@
-package com.wipro.feedapp.main_activity;
+package com.wipro.feedapp.view;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
+
 import android.widget.Toast;
 
 import com.wipro.feedapp.R;
-import com.wipro.feedapp.adapter.FeedsAdapter;
+import com.wipro.feedapp.presenter.adapter.FeedsAdapter;
 import com.wipro.feedapp.model.FeedsList;
 import com.wipro.feedapp.model.Row;
-
-import retrofit2.Retrofit;
+import com.wipro.feedapp.presenter.GetFeedsInteractorImpl;
+import com.wipro.feedapp.presenter.MainPresenterImpl;
+import com.wipro.feedapp.presenter.RecyclerItemClickListener;
 
 
 public class MainActivity extends AppCompatActivity implements MainContract.MainView {
 
-    private ProgressBar progressBar;
     private RecyclerView rcViewFeeds;
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     private MainContract.presenter presenter;
     private Toolbar toolbar;
@@ -36,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
         setContentView(R.layout.activity_main);
 
         initializeToolbarAndRecyclerView();
-        initProgressBar();
 
 
         presenter = new MainPresenterImpl(this, new GetFeedsInteractorImpl());
@@ -52,32 +47,22 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
 
         rcViewFeeds = findViewById(R.id.rcViewFeeds);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         rcViewFeeds.setLayoutManager(layoutManager);
 
 
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                presenter.onRefreshButtonClick();
+                hideProgress();
+            }
+        });
     }
 
-
-    /**
-     * Initializing progressbar programmatically
-     * */
-    private void initProgressBar() {
-        progressBar = new ProgressBar(this, null, android.R.attr.progressBarStyleLarge);
-        progressBar.setIndeterminate(true);
-
-        RelativeLayout relativeLayout = new RelativeLayout(this);
-        relativeLayout.setGravity(Gravity.CENTER);
-        relativeLayout.addView(progressBar);
-
-        RelativeLayout.LayoutParams params = new
-                RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-        progressBar.setVisibility(View.INVISIBLE);
-
-        this.addContentView(relativeLayout, params);
-    }
 
 
     /**
@@ -97,13 +82,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
 
     @Override
     public void showProgress() {
-        progressBar.setVisibility(View.VISIBLE);
+        mSwipeRefreshLayout.setRefreshing(true);
     }
 
 
     @Override
     public void hideProgress() {
-        progressBar.setVisibility(View.INVISIBLE);
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
 
@@ -131,29 +116,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.Main
         presenter.onDestroy();
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_refresh) {
-            presenter.onRefreshButtonClick();
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
 
 }

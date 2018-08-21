@@ -2,9 +2,7 @@ package com.wipro.feedapp;
 
 import android.test.ActivityInstrumentationTestCase2;
 
-import com.wipro.feedapp.main_activity.MainActivity;
-
-import org.junit.Test;
+import com.wipro.feedapp.view.MainActivity;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;

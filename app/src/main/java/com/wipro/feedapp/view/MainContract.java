@@ -1,11 +1,8 @@
-package com.wipro.feedapp.main_activity;
+package com.wipro.feedapp.view;
 
 
 import com.wipro.feedapp.model.FeedsList;
-import com.wipro.feedapp.model.Row;
-import com.wipro.feedapp.my_interface.BasePresenter;
-
-import java.util.ArrayList;
+import com.wipro.feedapp.presenter.BasePresenter;
 
 /**
  * Created by Bhushan on 07/8/18.

@@ -1,4 +1,4 @@
-package com.wipro.feedapp.adapter;
+package com.wipro.feedapp.presenter.adapter;
 
 import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
@@ -11,11 +11,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.wipro.feedapp.R;
-import com.wipro.feedapp.main_activity.RecyclerItemClickListener;
+import com.wipro.feedapp.presenter.RecyclerItemClickListener;
 import com.wipro.feedapp.model.FeedsList;
-import com.wipro.feedapp.model.Row;
-
-import java.util.ArrayList;
 
 public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.FeedsViewHolder> {
 
